@@ -32,7 +32,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "@angular/cdk/overlay-prebuilt.css",
+              "src/styles.scss",
+              "src/app/styles/print-global.scss"
             ],
             "scripts": []
           },
