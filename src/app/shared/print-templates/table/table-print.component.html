@@ -1,0 +1,98 @@
+<!-- Table Print Template -->
+<div [class]="getContainerClasses().join(' ')" [attr.dir]="isRtl() ? 'rtl' : 'ltr'">
+  
+  <!-- Watermark (if enabled) -->
+  <div class="watermark" *ngIf="watermark()">{{ watermark() }}</div>
+
+  <!-- Table Header -->
+  <div class="table-header">
+    <div class="header-top">
+      <!-- Company Logo -->
+      <div class="header-logo" *ngIf="data.company?.logo">
+        <img [src]="data.company!.logo" [alt]="data.company!.name || 'Company Logo'">
+      </div>
+      
+      <!-- Company Name and Title -->
+      <div class="header-text">
+        <p class="company-name" *ngIf="data.company?.name">{{ data.company!.name }}</p>
+        <h1 class="table-title">{{ data.title }}</h1>
+        <h2 class="table-subtitle" *ngIf="data.subtitle">{{ data.subtitle }}</h2>
+      </div>
+      
+      <!-- Generated Info -->
+      <div class="header-meta">
+        <p class="generated-date">{{ getGeneratedDate() }}</p>
+        <p class="record-count">{{ getRowCount() }}</p>
+      </div>
+    </div>
+
+    <!-- Filters Section -->
+    <div class="filters-section" *ngIf="hasFilters()">
+      <h3 class="filters-title">Applied Filters:</h3>
+      <div class="filters-list">
+        <div 
+          *ngFor="let filter of data.filters"
+          class="filter-item">
+          <span class="filter-label">{{ filter.label }}:</span>
+          <span class="filter-value">{{ filter.value }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Data Table -->
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th class="row-number-header" *ngIf="data.showRowNumbers">#</th>
+          <th 
+            *ngFor="let column of data.columns"
+            [class]="getAlignmentClass(column)"
+            [ngStyle]="getColumnStyle(column)">
+            {{ column.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of data.rows; let i = index">
+          <td class="row-number" *ngIf="data.showRowNumbers">{{ i + 1 }}</td>
+          <td 
+            *ngFor="let column of data.columns"
+            [class]="getAlignmentClass(column)">
+            {{ getCellValue(row, column) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="data.rows.length === 0">
+      <p class="empty-message">No data available</p>
+    </div>
+  </div>
+
+  <!-- Summary Section -->
+  <div class="summary-section" *ngIf="hasSummary()">
+    <h3 class="summary-title">Summary Statistics</h3>
+    <div class="summary-grid">
+      <div 
+        *ngFor="let item of data.summary"
+        class="summary-card">
+        <div class="summary-value">{{ item.value }}</div>
+        <div class="summary-label">{{ item.label }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Footer -->
+  <div class="table-footer" *ngIf="showFooter()">
+    <div class="footer-content">
+      <p class="footer-info">
+        {{ data.company?.name || 'Company' }} | Generated: {{ getGeneratedDate() }}
+      </p>
+    </div>
+  </div>
+
+</div>
+

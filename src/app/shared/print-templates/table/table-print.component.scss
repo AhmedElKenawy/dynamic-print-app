@@ -1,0 +1,453 @@
+/**
+ * Table Print Template Styles
+ */
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+$primary-color: #0f172a;
+$accent-color: #0ea5e9;
+$border-color: #e2e8f0;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$background-light: #f8fafc;
+$header-bg: #0f172a;
+$row-hover: #f1f5f9;
+
+// ============================================================================
+// Table Container
+// ============================================================================
+
+.print-container {
+  padding: 25px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+// ============================================================================
+// Table Header
+// ============================================================================
+
+.table-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid $primary-color;
+}
+
+.header-top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.header-logo {
+  img {
+    max-width: 120px;
+    max-height: 60px;
+    object-fit: contain;
+  }
+}
+
+.header-text {
+  .company-name {
+    font-size: 10pt;
+    font-weight: 600;
+    color: $text-secondary;
+    margin: 0 0 5px 0;
+  }
+
+  .table-title {
+    font-size: 24pt;
+    font-weight: 700;
+    color: $primary-color;
+    margin: 0 0 5px 0;
+    line-height: 1.2;
+  }
+
+  .table-subtitle {
+    font-size: 12pt;
+    font-weight: 400;
+    color: $text-secondary;
+    margin: 0;
+    font-style: italic;
+  }
+}
+
+.header-meta {
+  text-align: right;
+  font-size: 9pt;
+  color: $text-secondary;
+
+  p {
+    margin: 4px 0;
+  }
+
+  .generated-date {
+    font-weight: 600;
+  }
+
+  .record-count {
+    color: $accent-color;
+    font-weight: 600;
+  }
+}
+
+// ============================================================================
+// Filters Section
+// ============================================================================
+
+.filters-section {
+  margin-top: 20px;
+  padding: 15px;
+  background: $background-light;
+  border-radius: 6px;
+  border-left: 4px solid $accent-color;
+}
+
+.filters-title {
+  font-size: 11pt;
+  font-weight: 600;
+  color: $primary-color;
+  margin: 0 0 10px 0;
+}
+
+.filters-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+}
+
+.filter-item {
+  font-size: 10pt;
+  display: flex;
+  gap: 8px;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: $text-secondary;
+}
+
+.filter-value {
+  color: $text-primary;
+  font-weight: 500;
+}
+
+// ============================================================================
+// Data Table
+// ============================================================================
+
+.table-container {
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10pt;
+  background: white;
+  border: 1px solid $border-color;
+
+  thead {
+    background: $header-bg;
+    color: white;
+
+    th {
+      padding: 12px 10px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 10pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $border-color;
+      transition: background-color 0.2s;
+
+      &:nth-child(even) {
+        background: $background-light;
+      }
+
+      &:hover {
+        background: $row-hover;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    td {
+      padding: 10px;
+      color: $text-primary;
+      border-right: 1px solid $border-color;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  // Row Numbers
+  .row-number-header,
+  .row-number {
+    width: 50px;
+    text-align: center;
+    font-weight: 600;
+    color: $text-secondary;
+    background: $background-light;
+  }
+
+  .row-number {
+    font-size: 9pt;
+  }
+
+  // Text Alignment Classes
+  .text-left {
+    text-align: left;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+}
+
+// ============================================================================
+// Empty State
+// ============================================================================
+
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+  background: $background-light;
+  border: 2px dashed $border-color;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.empty-message {
+  font-size: 14pt;
+  color: $text-secondary;
+  font-style: italic;
+  margin: 0;
+}
+
+// ============================================================================
+// Summary Section
+// ============================================================================
+
+.summary-section {
+  margin: 30px 0;
+  padding: 25px;
+  background: linear-gradient(to bottom, white, $background-light);
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  border-top: 3px solid $accent-color;
+}
+
+.summary-title {
+  font-size: 14pt;
+  font-weight: 700;
+  color: $primary-color;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.summary-card {
+  background: white;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.summary-value {
+  font-size: 24pt;
+  font-weight: 700;
+  color: $accent-color;
+  margin-bottom: 8px;
+  line-height: 1;
+  font-family: 'Courier New', monospace;
+}
+
+.summary-label {
+  font-size: 10pt;
+  font-weight: 600;
+  color: $text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// ============================================================================
+// Table Footer
+// ============================================================================
+
+.table-footer {
+  margin-top: 40px;
+  padding-top: 15px;
+  border-top: 1px solid $border-color;
+}
+
+.footer-content {
+  text-align: center;
+}
+
+.footer-info {
+  font-size: 9pt;
+  color: $text-secondary;
+  margin: 0;
+}
+
+// ============================================================================
+// RTL Support
+// ============================================================================
+
+.rtl {
+  .header-top {
+    direction: rtl;
+  }
+
+  .header-meta {
+    text-align: left;
+  }
+
+  .filters-section {
+    border-left: none;
+    border-right: 4px solid $accent-color;
+  }
+
+  .data-table {
+    th, td {
+      text-align: right;
+    }
+
+    .text-left {
+      text-align: right;
+    }
+
+    .text-right {
+      text-align: left;
+    }
+
+    thead th {
+      border-right: none;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+      &:last-child {
+        border-left: none;
+      }
+    }
+
+    tbody td {
+      border-right: none;
+      border-left: 1px solid $border-color;
+
+      &:last-child {
+        border-left: none;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Responsive Design (for preview)
+// ============================================================================
+
+@media screen and (max-width: 768px) {
+  .header-top {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .header-meta {
+    text-align: left;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+// ============================================================================
+// Print Styles
+// ============================================================================
+
+@media print {
+  .print-container {
+    padding: 10mm;
+  }
+
+  .table-header {
+    page-break-after: avoid;
+  }
+
+  .data-table {
+    thead {
+      display: table-header-group;
+    }
+
+    tbody tr {
+      page-break-inside: avoid;
+    }
+
+    &:hover {
+      background: inherit;
+    }
+  }
+
+  .summary-section {
+    page-break-before: avoid;
+  }
+
+  .summary-card {
+    page-break-inside: avoid;
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  // Ensure colors print
+  .data-table thead,
+  .filters-section,
+  .summary-section {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  // Remove hover effects
+  .data-table tbody tr:hover {
+    background: inherit;
+  }
+}
+

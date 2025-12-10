@@ -1,0 +1,140 @@
+<!-- Invoice Print Template -->
+<div [class]="getContainerClasses().join(' ')" [attr.dir]="isRtl() ? 'rtl' : 'ltr'">
+  
+  <!-- Watermark (if enabled) -->
+  <div class="watermark" *ngIf="watermark()">{{ watermark() }}</div>
+
+  <!-- Invoice Header -->
+  <div class="invoice-header">
+    <div class="header-row">
+      <!-- Company Information -->
+      <div class="company-info">
+        <img 
+          *ngIf="data.company.logo" 
+          [src]="data.company.logo" 
+          [alt]="data.company.name"
+          class="company-logo">
+        <h1 class="company-name">{{ data.company.name }}</h1>
+        <div class="company-details">
+          <p *ngIf="data.company.address">{{ data.company.address }}</p>
+          <p *ngIf="data.company.city || data.company.country">
+            <span *ngIf="data.company.city">{{ data.company.city }}</span>
+            <span *ngIf="data.company.city && data.company.country">, </span>
+            <span *ngIf="data.company.country">{{ data.company.country }}</span>
+          </p>
+          <p *ngIf="data.company.phone">Phone: {{ data.company.phone }}</p>
+          <p *ngIf="data.company.email">Email: {{ data.company.email }}</p>
+          <p *ngIf="data.company.website">{{ data.company.website }}</p>
+          <p *ngIf="data.company.taxId" class="tax-id">Tax ID: {{ data.company.taxId }}</p>
+        </div>
+      </div>
+
+      <!-- Invoice Metadata -->
+      <div class="invoice-meta">
+        <h2 class="invoice-title">INVOICE</h2>
+        <div class="meta-details">
+          <div class="meta-row">
+            <span class="meta-label">Invoice #:</span>
+            <span class="meta-value invoice-number">{{ data.invoiceNumber }}</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Date:</span>
+            <span class="meta-value">{{ getInvoiceDate() }}</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Due Date:</span>
+            <span class="meta-value" [class.overdue]="isOverdue()">
+              {{ getDueDate() }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bill To Section -->
+  <div class="bill-to-section">
+    <h3 class="section-title">Bill To:</h3>
+    <div class="customer-info">
+      <p class="customer-name">{{ data.customer.name }}</p>
+      <p *ngIf="data.customer.address">{{ data.customer.address }}</p>
+      <p>{{ data.customer.city }}, {{ data.customer.country }}</p>
+      <p *ngIf="data.customer.email">{{ data.customer.email }}</p>
+      <p *ngIf="data.customer.phone">{{ data.customer.phone }}</p>
+    </div>
+  </div>
+
+  <!-- Items Table -->
+  <div class="invoice-body">
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th class="col-description">Description</th>
+          <th class="col-quantity">Quantity</th>
+          <th class="col-price">Unit Price</th>
+          <th class="col-total">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data.items" class="item-row">
+          <td class="item-description">{{ item.description }}</td>
+          <td class="item-quantity">{{ formatNumber(item.quantity, 0) }}</td>
+          <td class="item-price">{{ formatInvoiceCurrency(item.unitPrice) }}</td>
+          <td class="item-total">{{ formatInvoiceCurrency(item.total) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Totals Section -->
+  <div class="invoice-totals">
+    <div class="totals-wrapper">
+      <div class="total-row">
+        <span class="total-label">Subtotal:</span>
+        <span class="total-value">{{ formatInvoiceCurrency(data.subtotal) }}</span>
+      </div>
+      
+      <div class="total-row" *ngIf="data.discount">
+        <span class="total-label">Discount:</span>
+        <span class="total-value discount">-{{ formatInvoiceCurrency(data.discount) }}</span>
+      </div>
+      
+      <div class="total-row">
+        <span class="total-label">Tax:</span>
+        <span class="total-value">{{ formatInvoiceCurrency(data.tax) }}</span>
+      </div>
+      
+      <div class="total-row" *ngIf="data.shipping">
+        <span class="total-label">Shipping:</span>
+        <span class="total-value">{{ formatInvoiceCurrency(data.shipping) }}</span>
+      </div>
+      
+      <div class="total-row grand-total">
+        <span class="total-label">Total:</span>
+        <span class="total-value">{{ formatInvoiceCurrency(getGrandTotal()) }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notes Section -->
+  <div class="invoice-notes" *ngIf="data.notes">
+    <h3 class="section-title">Notes:</h3>
+    <p class="notes-text">{{ data.notes }}</p>
+  </div>
+
+  <!-- Payment Terms -->
+  <div class="payment-terms" *ngIf="data.paymentTerms">
+    <h3 class="section-title">Payment Terms:</h3>
+    <p class="terms-text">{{ data.paymentTerms }}</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="invoice-footer" *ngIf="showFooter()">
+    <div class="footer-content">
+      <p class="footer-text">Thank you for your business!</p>
+      <p class="footer-date">Generated on {{ getCurrentDateTime() }}</p>
+    </div>
+  </div>
+
+</div>
+

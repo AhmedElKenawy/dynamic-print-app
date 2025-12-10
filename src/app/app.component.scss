@@ -1,0 +1,474 @@
+// ============================================================================
+// Variables
+// ============================================================================
+
+$primary-color: #3b82f6;
+$secondary-color: #6b7280;
+$success-color: #10b981;
+$error-color: #ef4444;
+$info-color: #3b82f6;
+$bg-light: #f8fafc;
+$bg-white: #ffffff;
+$border-color: #e5e7eb;
+$text-primary: #1f2937;
+$text-secondary: #6b7280;
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+// ============================================================================
+// Demo Container
+// ============================================================================
+
+.demo-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0;
+}
+
+// ============================================================================
+// Header
+// ============================================================================
+
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: $shadow-lg;
+  padding: 2rem 1.5rem;
+  margin-bottom: 3rem;
+  border-bottom: 3px solid $primary-color;
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+    color: $text-secondary;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: $primary-color;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .stat-detail {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    font-weight: 500;
+  }
+}
+
+// ============================================================================
+// Main Content
+// ============================================================================
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+// ============================================================================
+// Message Box
+// ============================================================================
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  animation: slideIn 0.3s ease-out;
+  box-shadow: $shadow-md;
+
+  &.message-success {
+    background: $success-color;
+    color: white;
+  }
+
+  &.message-error {
+    background: $error-color;
+    color: white;
+  }
+
+  &.message-info {
+    background: $info-color;
+    color: white;
+  }
+
+  .message-icon {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .message-text {
+    flex: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// ============================================================================
+// Cards Grid
+// ============================================================================
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.demo-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: $shadow-xl;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 1rem 0;
+    text-align: center;
+  }
+
+  .card-description {
+    color: $text-secondary;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+
+    li {
+      padding: 0.5rem 0;
+      color: $text-secondary;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+}
+
+// ============================================================================
+// Buttons
+// ============================================================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .btn-icon {
+    font-size: 1.125rem;
+  }
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, $primary-color 0%, #2563eb 100%);
+  color: white;
+  box-shadow: $shadow-md;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+.btn-secondary {
+  background: white;
+  color: $text-primary;
+  border: 2px solid $border-color;
+
+  &:hover:not(:disabled) {
+    background: $bg-light;
+    border-color: $text-secondary;
+  }
+}
+
+.btn-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+// ============================================================================
+// Features Section
+// ============================================================================
+
+.features-section {
+  background: white;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  margin-bottom: 3rem;
+  box-shadow: $shadow-xl;
+
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 2.5rem 0;
+  }
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-item {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: $bg-light;
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+// ============================================================================
+// Info Section
+// ============================================================================
+
+.info-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.info-box {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: $shadow-lg;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 1rem 0;
+  }
+
+  p {
+    color: $text-secondary;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  ul, ol {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: $text-secondary;
+
+    li {
+      margin: 0.5rem 0;
+      line-height: 1.6;
+    }
+  }
+
+  code {
+    background: $bg-light;
+    padding: 0.125rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: $primary-color;
+    font-weight: 600;
+  }
+
+  kbd {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    font-family: monospace;
+    background: $bg-light;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    box-shadow: $shadow-sm;
+  }
+}
+
+// ============================================================================
+// Footer
+// ============================================================================
+
+.footer {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: $shadow-lg;
+  margin-top: 3rem;
+
+  p {
+    margin: 0.5rem 0;
+    color: $text-secondary;
+    font-size: 0.875rem;
+  }
+
+  .footer-note {
+    font-weight: 600;
+    color: $primary-color;
+  }
+}
+
+// ============================================================================
+// Responsive Design
+// ============================================================================
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.875rem;
+  }
+
+  .header .subtitle {
+    font-size: 1rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-section {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content {
+    padding: 0 1rem 2rem;
+  }
+
+  .header,
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-group {
+    grid-template-columns: 1fr;
+  }
+
+  .demo-card {
+    padding: 1.5rem;
+  }
+
+  .features-section {
+    padding: 2rem 1.5rem;
+  }
+}
+
+// ============================================================================
+// Print Styles (Hide demo UI when printing)
+// ============================================================================
+
+@media print {
+  .demo-container,
+  .header,
+  .main-content,
+  .footer {
+    display: none !important;
+  }
+}
+

@@ -1,0 +1,335 @@
+/**
+ * Print Preview Component Styles
+ * Screen display styles for the preview dialog
+ */
+
+// ============================================================================
+// Variables
+// ============================================================================
+
+$header-height: 70px;
+$footer-height: 50px;
+$primary-color: #0d6efd;
+$secondary-color: #6c757d;
+$border-color: #dee2e6;
+$background-light: #f8f9fa;
+$text-primary: #212529;
+$text-secondary: #6c757d;
+$error-color: #dc3545;
+$success-color: #198754;
+
+// ============================================================================
+// Dialog Container
+// ============================================================================
+
+.print-preview-dialog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  outline: none;
+  overflow: hidden;
+}
+
+// ============================================================================
+// Header
+// ============================================================================
+
+.preview-header {
+  height: $header-height;
+  border-bottom: 1px solid $border-color;
+  background: white;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 24px;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+// ============================================================================
+// Buttons
+// ============================================================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary-color, 8%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+.btn-secondary {
+  background-color: $background-light;
+  color: $text-primary;
+  border: 1px solid $border-color;
+
+  &:hover:not(:disabled) {
+    background-color: darken($background-light, 5%);
+    border-color: darken($border-color, 10%);
+  }
+}
+
+// ============================================================================
+// Body / Content Area
+// ============================================================================
+
+.preview-body {
+  flex: 1;
+  overflow: auto;
+  background: #e9ecef;
+  padding: 30px;
+  position: relative;
+}
+
+// ============================================================================
+// Loading State
+// ============================================================================
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid $background-light;
+  border-top: 4px solid $primary-color;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  margin-top: 20px;
+  font-size: 16px;
+  color: $text-secondary;
+}
+
+// ============================================================================
+// Error State
+// ============================================================================
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+  padding: 40px;
+}
+
+.error-icon {
+  width: 64px;
+  height: 64px;
+  color: $error-color;
+  margin-bottom: 20px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.error-text {
+  font-size: 16px;
+  color: $text-primary;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 400px;
+}
+
+// ============================================================================
+// Template Wrapper
+// ============================================================================
+
+.template-wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.template-container {
+  background: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+// Hidden state for template wrapper
+.hidden {
+  visibility: hidden;
+  position: absolute;
+  left: -9999px;
+}
+
+// ============================================================================
+// Footer
+// ============================================================================
+
+.preview-footer {
+  height: $footer-height;
+  border-top: 1px solid $border-color;
+  background: white;
+  flex-shrink: 0;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 24px;
+}
+
+.footer-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  color: $text-secondary;
+
+  .icon-small {
+    width: 16px;
+    height: 16px;
+  }
+
+  kbd {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    color: $text-primary;
+    background-color: $background-light;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// ============================================================================
+// Responsive Design
+// ============================================================================
+
+@media (max-width: 768px) {
+  .preview-body {
+    padding: 15px;
+  }
+
+  .header-content {
+    padding: 0 16px;
+  }
+
+  .header-title {
+    font-size: 18px;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 13px;
+
+    span {
+      display: none;
+    }
+
+    .icon {
+      margin: 0;
+    }
+  }
+
+  .footer-hint {
+    font-size: 12px;
+  }
+}
+
+// ============================================================================
+// Print Styles - Hide Dialog Chrome
+// ============================================================================
+
+@media print {
+  .print-preview-dialog {
+    height: auto;
+    overflow: visible;
+  }
+
+  .preview-body {
+    overflow: visible;
+    padding: 0;
+    background: white;
+  }
+
+  .template-wrapper {
+    box-shadow: none;
+  }
+
+  .template-container {
+    box-shadow: none;
+    margin: 0;
+  }
+}
+

@@ -1,0 +1,40 @@
+/**
+ * Print-specific styles for Print Preview Component
+ * These styles are applied when printing
+ */
+
+@media print {
+  // Hide dialog chrome elements
+  .no-print {
+    display: none !important;
+  }
+
+  // Ensure content fills the page
+  .print-preview-dialog {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .preview-body {
+    padding: 0;
+    margin: 0;
+    background: white;
+    overflow: visible;
+  }
+
+  .template-wrapper,
+  .template-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  // Ensure proper page breaks
+  .template-container {
+    page-break-after: auto;
+    page-break-inside: auto;
+  }
+}
+

@@ -1,0 +1,80 @@
+<!-- Print Preview Dialog -->
+<div class="print-preview-dialog" (keydown)="onKeydown($event)" tabindex="0">
+  
+  <!-- Dialog Header (Hidden when printing) -->
+  <div class="preview-header no-print">
+    <div class="header-content">
+      <h2 class="header-title">{{ getTitle() }}</h2>
+      <div class="header-actions">
+        <button 
+          type="button" 
+          class="btn btn-primary" 
+          (click)="onPrint()"
+          [disabled]="!isReady()"
+          title="Print (Ctrl+P)">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span>Print</span>
+        </button>
+        <button 
+          type="button" 
+          class="btn btn-secondary" 
+          (click)="onClose()"
+          title="Close (Esc)">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span>Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preview Content Area -->
+  <div class="preview-body">
+    
+    <!-- Loading State -->
+    <div class="loading-container" *ngIf="isLoading()">
+      <div class="spinner"></div>
+      <p class="loading-text">Loading preview...</p>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-container" *ngIf="error()">
+      <div class="error-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <p class="error-text">{{ error() }}</p>
+      <button type="button" class="btn btn-secondary" (click)="onClose()">Close</button>
+    </div>
+
+    <!-- Template Container - Always rendered but hidden during loading/error -->
+    <div class="template-wrapper" [class.hidden]="isLoading() || error()">
+      <div class="template-container" #templateContainer></div>
+    </div>
+
+  </div>
+
+  <!-- Dialog Footer (Hidden when printing) -->
+  <div class="preview-footer no-print" *ngIf="isReady()">
+    <div class="footer-content">
+      <p class="footer-hint">
+        <svg class="icon-small" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        Press <kbd>Ctrl+P</kbd> to print or <kbd>Esc</kbd> to close
+      </p>
+    </div>
+  </div>
+
+</div>
