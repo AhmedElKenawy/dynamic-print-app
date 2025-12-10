@@ -9,6 +9,7 @@
 import { Injectable, Type, inject } from '@angular/core';
 import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { PrintConfig, PrintTemplate, PrintOptions, PrintPreviewData } from '../../shared/models/print.models';
+import { InvoicePrintComponent, ReportPrintComponent, TablePrintComponent } from '../../shared/print-templates';
 import { PrintPreviewComponent } from '../../shared/components/print-preview/print-preview.component';
 
 @Injectable({
@@ -239,6 +240,32 @@ export class PrintService {
       count: this.templateRegistry.size,
       templates: this.getRegisteredTemplates()
     };
+  }
+
+  /**
+   * Register the default templates shipped with the app
+   * Useful for centralizing registration logic
+   */
+  registerDefaultTemplates(): void {
+    this.registerTemplate(
+      'invoice',
+      InvoicePrintComponent,
+      'Professional invoice template with itemized billing'
+    );
+
+    this.registerTemplate(
+      'report',
+      ReportPrintComponent,
+      'Multi-section report template with data tables and summaries'
+    );
+
+    this.registerTemplate(
+      'table',
+      TablePrintComponent,
+      'Data table template with customizable columns and filters'
+    );
+
+    console.log('Default print templates registered successfully');
   }
 }
 

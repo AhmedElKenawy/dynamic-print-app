@@ -11,11 +11,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { Dialog } from '@angular/cdk/dialog';
 import { routes } from './app.routes';
 import { PrintService } from './core/services/print.service';
-import { 
-  InvoicePrintComponent,
-  ReportPrintComponent,
-  TablePrintComponent
-} from './shared/print-templates';
+import { registerDefaultTemplates } from './core/services/register-templates';
 
 /**
  * Factory function to register print templates on application startup
@@ -23,32 +19,7 @@ import {
  * @param printService - Injected print service
  * @returns Initialization function
  */
-export function registerPrintTemplates(printService: PrintService): () => void {
-  return () => {
-    // Register Invoice Template
-    printService.registerTemplate(
-      'invoice',
-      InvoicePrintComponent,
-      'Professional invoice template with itemized billing'
-    );
-
-    // Register Report Template
-    printService.registerTemplate(
-      'report',
-      ReportPrintComponent,
-      'Multi-section report template with data tables and summaries'
-    );
-
-    // Register Table Template
-    printService.registerTemplate(
-      'table',
-      TablePrintComponent,
-      'Data table template with customizable columns and filters'
-    );
-
-    console.log('Print templates registered successfully');
-  };
-}
+export const registerPrintTemplates = registerDefaultTemplates;
 
 /**
  * Application configuration
